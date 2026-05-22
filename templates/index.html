@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#00c88c">
+  <title>FuhX Gift Store</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+  <header class="main-header">
+    <div class="header-logo">🎁</div>
+    <div class="header-text">
+      <h1>FuhX GIFT STORE</h1>
+      <p>Free Fire Premium Store Interface</p>
+    </div>
+  </header>
+
+  <!-- LOGIN -->
+  <div class="login-container" id="loginBox">
+    <div class="login-icon">🔐</div>
+    <h2>AUTHENTICATION</h2>
+    <p class="sub">Enter your JWT token to access the store</p>
+    <input type="text" id="jwtInput" placeholder="Paste your JWT token here..." autocomplete="off">
+    <button id="loadBtn">LOAD GIFT STORE</button>
+    <p id="errorMsg" class="error"></p>
+  </div>
+
+  <!-- STORE -->
+  <div class="store-container" id="storeBox" style="display:none;">
+
+    <div class="wallet-bar">
+      <div class="wallet-item">
+        <span class="label">Diamonds</span>
+        <span class="value" id="valDiamond">--</span>
+      </div>
+      <div class="wallet-item">
+        <span class="label">Gold</span>
+        <span class="value" id="valGold">--</span>
+      </div>
+      <div class="wallet-item full">
+        <span class="label">Last Top Up</span>
+        <span class="value" id="valTopup">--</span>
+      </div>
+    </div>
+
+    <div class="store-header">
+      <h3>🛒 Store Catalog</h3>
+      <span id="giftsSent">🎁 Sent Today: 0</span>
+    </div>
+
+    <div class="category-bar" id="categoryBar">
+      <button class="cat-btn active" data-cat="All">All Items</button>
+    </div>
+
+    <div class="grid" id="itemsGrid"></div>
+
+  </div>
+
+  <!-- GIFT MODAL -->
+  <div id="giftModal" class="modal">
+    <div class="modal-content">
+      <h2>🎁 SEND GIFT</h2>
+      <input type="text" id="targetUid" placeholder="Enter Receiver UID" autocomplete="off">
+      <input type="text" id="giftMsg" placeholder="Message (Optional)" value="Enjoy your gift!">
+      <div class="modal-btns">
+        <button id="confirmSend" class="btn-send">CONFIRM</button>
+        <button onclick="closeModal()" class="btn-cancel">CANCEL</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toast"></div>
+
+  <script src="/static/js/script.js"></script>
+</body>
+</html>
