@@ -150,7 +150,7 @@ def send_gift():
     try:
         r = requests.post(f"{get_server_url(region)}/SendGift", data=encrypt_payload(req.SerializeToString()), headers=headers, verify=False, timeout=15)
         if r.status_code == 200:
-            if jwt in STORE_CACHE: del STORE_CACHE[jwt] # Clear cache to update wallet/sent
+            if jwt in STORE_CACHE: del STORE_CACHE[jwt]
             return jsonify({"success": True, "message": f"Gift sent to {uid} successfully!"})
         else:
             try: err = r.content.decode('utf-8').strip()
@@ -159,4 +159,4 @@ def send_gift():
     except Exception as e: return jsonify({"success": False, "message": str(e)})
 
 if __name__ == '__main__':
-    app.run(port=8080)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
