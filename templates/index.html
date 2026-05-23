@@ -13,7 +13,7 @@
     <div class="header-logo">🎁</div>
     <div class="header-text">
       <h1>FuhX GIFT STORE</h1>
-      <p>Free Fire Premium Store Interface</p>
+      <p>FuhX Premium Gifts Store </p>
     </div>
   </header>
 
@@ -25,6 +25,21 @@
     <input type="text" id="jwtInput" placeholder="Paste your JWT token here..." autocomplete="off">
     <button id="loadBtn">LOAD GIFT STORE</button>
     <p id="errorMsg" class="error"></p>
+  </div>
+
+  <!-- ACCESS TO JWT -->
+  <div class="login-container" id="jwtAccessBox" style="margin-top: 20px;">
+    <div class="login-icon">🔑</div>
+    <h2>ACCESS TO JWT</h2>
+    <p class="sub">Enter your access token to get JWT</p>
+    <input type="text" id="accessTokenInput" placeholder="Enter your access_token here..." autocomplete="off">
+    <button id="getJwtBtn">GET</button>
+    <p id="jwtErrorMsg" class="error"></p>
+    <div id="jwtResultBox" style="display:none; margin-top:16px; text-align:left;">
+      <p style="font-size:0.72em; color:var(--green); letter-spacing:2px; font-family:'Rajdhani',sans-serif; font-weight:600; margin-bottom:8px;">TOKEN</p>
+      <p id="jwtTokenText" style="font-size:0.78em; color:#8ac0d0; word-break:break-all; line-height:1.6; font-family:monospace; background:rgba(0,0,0,0.3); padding:12px; border-radius:8px; border:1px solid var(--border);"></p>
+      <button id="copyJwtBtn" style="margin-top:12px; width:100%; padding:11px; font-size:0.95em; border-radius:10px; background:transparent; border:1px solid var(--green); color:var(--green2); letter-spacing:1px;">⎘ COPY TOKEN</button>
+    </div>
   </div>
 
   <!-- STORE -->
