@@ -176,10 +176,57 @@ document.getElementById('confirmSend').addEventListener('click', async () => {
   btn.disabled = false; btn.textContent = "CONFIRM";
 });
 
+// ── ACCESS TO JWT ──
+document.getElementById('getJwtBtn').addEventListener('click', async () => {
+  const accessToken = document.getElementById('accessTokenInput').value.trim();
+  const errorEl = document.getElementById('jwtErrorMsg');
+  const resultBox = document.getElementById('jwtResultBox');
+  const tokenText = document.getElementById('jwtTokenText');
+  const btn = document.getElementById('getJwtBtn');
+
+  errorEl.style.display = 'none';
+  resultBox.style.display = 'none';
+
+  if (!accessToken) {
+    errorEl.textContent = '⚠️ Please enter your access token.';
+    errorEl.style.display = 'block';
+    return;
+  }
+
+  btn.textContent = 'LOADING...'; btn.disabled = true;
+
+  try {
+    const res = await fetch(`https://ff-jwt-gen-api.lovable.app/api/public/token?access_token=${encodeURIComponent(accessToken)}`);
+    const data = await res.json();
+
+    if (data.success && data.token) {
+      tokenText.textContent = data.token;
+      resultBox.style.display = 'block';
+    } else {
+      errorEl.textContent = '❌ Invalid token or request failed.';
+      errorEl.style.display = 'block';
+    }
+  } catch (e) {
+    errorEl.textContent = '❌ Network error. Try again.';
+    errorEl.style.display = 'block';
+  }
+
+  btn.textContent = 'GET'; btn.disabled = false;
+});
+
+document.getElementById('copyJwtBtn').addEventListener('click', () => {
+  const token = document.getElementById('jwtTokenText').textContent;
+  navigator.clipboard.writeText(token).then(() => {
+    const btn = document.getElementById('copyJwtBtn');
+    btn.textContent = '✓ COPIED!';
+    setTimeout(() => btn.textContent = '⎘ COPY TOKEN', 2000);
+  });
+});
+
 // ── INFINITE SCROLL ──
 window.addEventListener('scroll', () => {
   if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 600) {
     fetchAndRenderItems();
   }
 }, { passive: true });
-                                                    
+                          
